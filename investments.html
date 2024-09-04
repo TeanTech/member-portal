@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .investment-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .investment-list li {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .investment-list li:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Investments</h2>
+  <ul id="investment-list" class="investment-list"></ul>
+
+  <script src="script.js"></script>
+
+  <script>
+    const investments = JSON.parse(new URLSearchParams(window.location.search).get('investments'));
+    console.log('Investments:', investments);
+
+    investments.forEach(investment => {
+      const investmentItem = document.createElement('li');
+      investmentItem.textContent = `Receipt Date: ${investment.receiptDate}, Debit: ${investment.debit}, Credit: ${investment.credit}, Running Balance: ${investment.runningBalance}`;
+      document.getElementById('investment-list').appendChild(investmentItem);
+    });
+  </script>
+</body>
+</html>
